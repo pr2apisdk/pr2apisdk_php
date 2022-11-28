@@ -179,7 +179,7 @@ class Sdk
             'user_id'          => $this->user_id,
             'client_ip'        => $this->client_ip,
             'client_userAgent' => $this->client_userAgent,
-            'fromadmin'        => isset($_SESSION['fromadmin']) ? isset($_SESSION['fromadmin']) : 0,
+            'fromadmin'        => isset($_SESSION['fromadmin']) ? intval($_SESSION['fromadmin']) : 0,
         ];
 
         foreach ($request['headers'] as $h => $v) {
