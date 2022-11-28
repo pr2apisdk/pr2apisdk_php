@@ -53,12 +53,14 @@ class Sdk
         if (!is_array($param)) {
             throw new SdkException('param must be array');
         }
+        $param['client_userAgent'] = isset($param['client_userAgent']) ? trim($param['client_userAgent']) : '';
+        $defaultUserAgent = sprintf('Sdk %s; php/%s; %s %s', self::SDK_VERSION, phpversion(), php_uname('s'), php_uname('r'));
         $this->config           = $param;
         $this->app_id           = $param['app_id'];
         $this->app_secret       = $param['app_secret'];
         $this->user_id          = isset($param['user_id']) ? (int)$param['user_id'] : 0;
         $this->client_ip        = isset($param['client_ip']) ? trim($param['client_ip']) : '';
-        $this->client_userAgent = isset($param['client_userAgent']) ? trim($param['client_userAgent']) : '';
+        $this->client_userAgent = $param['client_userAgent'] ? $param['client_userAgent'] : $defaultUserAgent;
         $this->base_api_url     = isset($param['base_api_url']) ? trim($param['base_api_url']) : '';
         $this->host             = isset($param['host']) && !empty($param['host']) ? $param['host'] : '';
         if (isset($param['syncExceptionOutputCode'])) {
