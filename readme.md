@@ -160,3 +160,4 @@ try {
 * 2022.11.28
 
 修改默认的UserAgent
+SDK验证兼容json的UTF8编码格式
